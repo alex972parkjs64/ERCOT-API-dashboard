@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -8,6 +8,7 @@
     <SpaRoot>..\ercot-api-dashboard.client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:63043</SpaProxyServerUrl>
+    <UserSecretsId>1633a1de-93db-417d-b55f-83c4d1ce0bb8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
