@@ -66,6 +66,7 @@
             }
         }
 
+        // testing
         public string GenerateTokenUrlParameters()
         {
             return $"username={UserName}&password={Password}&grant_type={GrantType}&scope={Scope}&client_id={ClientId}&response_type={ResponseType}";
