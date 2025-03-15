@@ -1,6 +1,6 @@
 @ERCOT_API_dashboard.Server_HostAddress = http://localhost:5078
 
-GET {{ERCOT_API_dashboard.Server_HostAddress}}/weatherforecast/
+GET {{ERCOT_API_dashboard.Server_HostAddress}}/TestTokenAccess/
 Accept: application/json
 
 ###
