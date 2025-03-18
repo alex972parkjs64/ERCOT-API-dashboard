@@ -7,7 +7,7 @@ namespace ERCOT_API_dashboard.Server.Services
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
-        private readonly string _ercot_token_url = "https://ercotb2c.b2clogin.com/ercotb2c.onmicrosoft.com/B2C_1_PUBAPI-ROPC-FLOW/oauth2/v2.0/token?";
+        private readonly string _tokenUrlConfigKey = "ErcotApiUrls:Token";
 
         public ErcotTokenService(HttpClient httpClient, IConfiguration configuration)
         {
@@ -18,9 +18,11 @@ namespace ERCOT_API_dashboard.Server.Services
         public async Task<ErcotApiTokenResponse> GetErcotApiTokenAsync(CancellationToken cancellationToken = default)
         {
             var authTokenParameters = new AuthTokenParameters(_configuration);
+            var ercot_token_url = _configuration[_tokenUrlConfigKey];
 
-            var token_url_with_params = string.Format("{0}{1}",
-                    _ercot_token_url,
+            var token_url_with_params = string.Format(
+                    "{0}{1}",
+                    ercot_token_url,
                     authTokenParameters.UrlParameters);
 
             var tokenResponse = await _httpClient.PostAsync(token_url_with_params, null, cancellationToken);
