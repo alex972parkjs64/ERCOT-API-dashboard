@@ -92,7 +92,7 @@ namespace ERCOT_API_dashboard.UnitTests
                 string.Format("username={0}&password={1}&grant_type={2}&scope={3}&client_id={4}&response_type={5}",
                     _url_encoded_username, _url_encoded_password, _grant_type, _scope, _client_id, _response_type);
 
-            Assert.Equal(expectedTokenUrlWithParameters, _auth_token_params.TokenUrlParameters);
+            Assert.Equal(expectedTokenUrlWithParameters, _auth_token_params.UrlParameters);
         }
     }
 }

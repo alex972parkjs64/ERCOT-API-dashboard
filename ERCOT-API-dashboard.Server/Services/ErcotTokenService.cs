@@ -21,7 +21,7 @@ namespace ERCOT_API_dashboard.Server.Services
 
             var token_url_with_params = string.Format("{0}{1}",
                     _ercot_token_url,
-                    authTokenParameters.TokenUrlParameters);
+                    authTokenParameters.UrlParameters);
 
             var tokenResponse = await _httpClient.PostAsync(token_url_with_params, null, cancellationToken);
             var ercotApiToken = await tokenResponse.Content.ReadFromJsonAsync<ErcotApiTokenResponse>(cancellationToken: cancellationToken);

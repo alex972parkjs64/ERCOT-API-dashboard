@@ -1,6 +1,8 @@
-﻿namespace ERCOT_API_dashboard.Server.Models.WindForecast
+﻿using ERCOT_API_dashboard.Server.Models.Interface;
+
+namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
-    public class SystemWideHourlyRegionalRequest
+    public class SystemWideHourlyRegionalRequest : IUrlParameters
     {
         private SystemWideHourlyRegionalRequest() { }
         public SystemWideHourlyRegionalRequest(DateTime from) 
@@ -9,8 +11,7 @@
         }
 
         public DateTime From { get; private set; }
-
-        // TODO: expected format is 2025-03-05T00:00:00
+        
         public string PostedDateTimeFrom
         {
             get
@@ -19,5 +20,12 @@
             }
         }
 
+        public string UrlParameters
+        {
+            get
+            {
+                return string.Format("?postedDatetimeFrom={0}", PostedDateTimeFrom);
+            }
+        }
     }
 }
