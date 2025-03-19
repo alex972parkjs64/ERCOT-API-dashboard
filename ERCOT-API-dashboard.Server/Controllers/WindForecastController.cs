@@ -34,7 +34,11 @@ public class WindForecastController : ControllerBase
                     request,
                     tokenResult.access_token);
 
-        return Ok(windForecastResult);
+        return Ok(new
+        {
+            MetaData = windForecastResult?._meta,
+            WindForecastData = windForecastResult?.WindForecastDataSet
+        });
     }
 
 }

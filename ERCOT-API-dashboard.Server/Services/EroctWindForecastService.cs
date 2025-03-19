@@ -38,9 +38,11 @@ namespace ERCOT_API_dashboard.Server.Services
             _httpClient.DefaultRequestHeaders.Add(_httpHeaderKeyForApimSubKey, _apiSubscriptionKey);
 
             var windForecastResponse = await _httpClient.GetAsync(reportUrl);
-            var wnidForecastResult   = await windForecastResponse.Content.ReadFromJsonAsync<SystemWideHourlyRegionalResponse>();
+            var windForecastResult   = await windForecastResponse.Content.ReadFromJsonAsync<SystemWideHourlyRegionalResponse>();
 
-            return wnidForecastResult;
+            windForecastResult?.MapRawWindForecastData();
+
+            return windForecastResult;
         }
     }
 }

@@ -10,9 +10,17 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         }
 
         public MetaData _meta { get; set; }
-
-        // TODO : need mapper to map this to list of object !!!!!
+        
         public IList<IList<JsonElement>> data { get; set; }
+
+        public IList<WindForecastData> WindForecastDataSet { get; private set; } = new List<WindForecastData>();
+        public void MapRawWindForecastData()
+        {
+            foreach (var item in data)
+            {
+                WindForecastDataSet.Add(new WindForecastData(item));
+            }
+        }
     }
 
     // represents data in response's _meta field
