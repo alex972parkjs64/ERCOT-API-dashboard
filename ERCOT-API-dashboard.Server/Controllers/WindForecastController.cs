@@ -31,14 +31,14 @@ public class WindForecastController : ControllerBase
 
         // Note : for now, hard-coding datetime for development purpose
         // TODO : replace with api parameter !
-        var param = new SystemWideHourlyRegionalRequest(DateTime.Now);
+        var param = new SystemWideHourlyRegionalRequest(new DateTime(2025, 3, 5, 13, 0, 0));
 
         var windForecastResult =
             await _eroctWindForecastService.GetHourlySystemWideRegionalWindForecastByModel(
                     param,
                     tokenResult.access_token);
 
-        return Ok(string.Empty);
+        return Ok(windForecastResult);
     }
 
 }

@@ -1,4 +1,6 @@
-﻿namespace ERCOT_API_dashboard.Server.Models.WindForecast
+﻿using System.Text.Json;
+
+namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
     public class SystemWideHourlyRegionalResponse
     {
@@ -10,7 +12,7 @@
         public MetaData _meta { get; set; }
 
         // TODO : need mapper to map this to list of object !!!!!
-        public string[][] data { get; set; }
+        public IList<IList<JsonElement>> data { get; set; }
     }
 
     // represents data in response's _meta field
