@@ -24,7 +24,9 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         {
             get
             {
-                return string.Format("?postedDatetimeFrom={0}", PostedDateTimeFrom);
+                // Note: hard coding page size to 10 for faster development, till all
+                //       necessary parameters are implemented
+                return string.Format("?postedDatetimeFrom={0}&size=10", PostedDateTimeFrom);
             }
         }
     }
