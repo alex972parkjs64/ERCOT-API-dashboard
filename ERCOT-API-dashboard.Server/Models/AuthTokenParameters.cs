@@ -1,8 +1,9 @@
-﻿using System.Net;
+﻿using ERCOT_API_dashboard.Server.Models.Interface;
+using System.Net;
 
 namespace ERCOT_API_dashboard.Server.Models
 {
-    public class AuthTokenParameters
+    public class AuthTokenParameters : IUrlParameters
     {
         private readonly IConfiguration _config;
         private readonly string _token_username = "token:username";
@@ -75,7 +76,7 @@ namespace ERCOT_API_dashboard.Server.Models
             }
         }
         
-        public string TokenUrlParameters
+        public string UrlParameters
         {
             get
             {

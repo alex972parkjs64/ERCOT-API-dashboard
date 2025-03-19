@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpClient();
 builder.Services.AddTransient<IErcotTokenService, ErcotTokenService>();
+builder.Services.AddTransient<IEroctWindForecastService, EroctWindForecastService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
