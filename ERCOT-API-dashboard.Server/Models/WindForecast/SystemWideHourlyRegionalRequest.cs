@@ -31,6 +31,8 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             {
                 // Note: hard coding page size to 10 for faster development, till all
                 //       necessary parameters are implemented
+                // TODO: will need method to generate query string depending on available valid params
+                //       when implementing rest of available request parameters
                 return string.Format("?postedDatetimeFrom={0}&size=10", PostedDateTimeFrom);
             }
         }
