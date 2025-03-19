@@ -25,17 +25,13 @@ public class WindForecastController : ControllerBase
     // https://apiexplorer.ercot.com/api-details#api=pubapi-apim-api&operation=getData_hrly_sys_reg_wind_fcast_model
     [HttpGet]
     [Route("system-wide/hourly/regional")]
-    public async Task<IActionResult> GetHourlySystemWideRegionalWindForecast()
+    public async Task<IActionResult> GetHourlySystemWideRegionalWindForecast([FromQuery]SystemWideHourlyRegionalRequest request)
     {
-        var tokenResult = await _ercotTokenService.GetErcotApiTokenAsync();
-
-        // Note : for now, hard-coding datetime for development purpose
-        // TODO : replace with api parameter !
-        var param = new SystemWideHourlyRegionalRequest(new DateTime(2025, 3, 5, 13, 0, 0));
+        var tokenResult = await _ercotTokenService.GetErcotApiTokenAsync();        
 
         var windForecastResult =
             await _eroctWindForecastService.GetHourlySystemWideRegionalWindForecastByModel(
-                    param,
+                    request,
                     tokenResult.access_token);
 
         return Ok(windForecastResult);

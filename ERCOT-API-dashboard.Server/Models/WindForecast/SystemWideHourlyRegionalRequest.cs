@@ -4,21 +4,26 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
     public class SystemWideHourlyRegionalRequest : IUrlParameters
     {
-        private SystemWideHourlyRegionalRequest() { }
-        public SystemWideHourlyRegionalRequest(DateTime from) 
-        {
-            From = from;
-        }
+        public DateTime From { get; set; }
+        //public DateTime To   { get; set; }
 
-        public DateTime From { get; private set; }
+        private readonly string _datetime_format = "yyyy-MM-ddTHH:mm:ss";
         
         public string PostedDateTimeFrom
         {
             get
             {
-                return From.ToString("yyyy-MM-ddTHH:mm:ss");
+                return From.ToString(_datetime_format);
             }
         }
+
+        //public string PostedDateTimeTo
+        //{
+        //    get
+        //    {
+        //        return From.ToString(_datetime_format);
+        //    }
+        //}
 
         public string UrlParameters
         {
