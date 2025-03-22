@@ -12,7 +12,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
                 From = new DateTime(2025, 3, 17, 3, 30, 45)
             };
 
-            Assert.Equal("2025-03-17T03:30:45", exampleRequest.PostedDateTimeFrom);
+            Assert.Equal("postedDatetimeFrom=2025-03-17T03:30:45&", exampleRequest.PostedDateTimeFromQryParam);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
                 From = new DateTime(2025, 10, 5, 22, 5, 7)
             };
 
-            Assert.Equal("2025-10-05T22:05:07", exampleRequest.PostedDateTimeFrom);
+            Assert.Equal("postedDatetimeFrom=2025-10-05T22:05:07&", exampleRequest.PostedDateTimeFromQryParam);
         }
     }
 }
