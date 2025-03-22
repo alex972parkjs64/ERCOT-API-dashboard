@@ -27,11 +27,14 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             }
         }
 
-        public string PostedDateTimeTo
+        public string PostedDateTimeToQryParam
         {
             get
             {
-                return From.ToString(_datetime_format);
+                return To != _dateTimeNotSet ?
+                    string.Format("postedDatetimeTo={0}&", To.ToString(_datetime_format))
+                    :
+                    string.Empty;
             }
         }
 
@@ -41,7 +44,9 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             {
                 // Note: hard coding page size to 10 for faster development, till all
                 //       necessary parameters are implemented
-                return string.Format("?{0}&size=10", PostedDateTimeFromQryParam);
+                return string.Format("?{0}{1}", 
+                    PostedDateTimeFromQryParam,
+                    PostedDateTimeToQryParam);
             }
         }
     }
