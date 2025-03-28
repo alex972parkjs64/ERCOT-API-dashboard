@@ -3,7 +3,7 @@ using System.Net;
 
 namespace ERCOT_API_dashboard.Server.Models
 {
-    public class AuthTokenParameters : IUrlParameters
+    public struct AuthTokenParameters : IUrlParameters
     {
         private readonly IConfiguration _config;
         private readonly string _token_username = "token:username";
