@@ -2,7 +2,7 @@
 
 namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
-    public class WindForecastData
+    public record WindForecastData
     {
         public WindForecastData(IList<JsonElement> windForecastData)
         {
@@ -17,19 +17,19 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             ForecastAdjustedForDaylightSaving = windForecastData[7].GetBoolean();
         }
 
-        public DateTime PostedDatetime { get; set; }
-        public DateOnly DeliveryDate { get; set; }
-        public int HourEnding { get; set; }
+        public DateTime PostedDatetime { get; init; }
+        public DateOnly DeliveryDate { get; init; }
+        public int HourEnding { get; init; }
 
         // ERCOT region which wind forecast applies
         // ex) COASTAL, NORTH, WEST, SYSTEM_TOTAL
-        public string? Region { get; set; }
+        public string? Region { get; init; }
 
         // in MW
-        public double ForecastedWindPower { get; set; }
-        public string? ForecastingModel { get; set; }
+        public double ForecastedWindPower { get; init; }
+        public string? ForecastingModel { get; init; }
 
-        public bool UsedByErcotSystemOperation { get; set; }
-        public bool ForecastAdjustedForDaylightSaving { get; set; }
+        public bool UsedByErcotSystemOperation { get; init; }
+        public bool ForecastAdjustedForDaylightSaving { get; init; }
     }
 }

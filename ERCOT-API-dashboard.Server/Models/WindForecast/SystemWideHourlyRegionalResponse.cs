@@ -2,18 +2,18 @@
 
 namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
-    public class SystemWideHourlyRegionalResponse
+    public record SystemWideHourlyRegionalResponse
     {
         public SystemWideHourlyRegionalResponse()
         {
             _meta = new MetaData();
         }
 
-        public MetaData _meta { get; set; }
+        public MetaData _meta { get; init; }
         
-        public IList<IList<JsonElement>> data { get; set; }
+        public IList<IList<JsonElement>> data { get; init; }
 
-        public IList<WindForecastData> WindForecastDataSet { get; private set; } = new List<WindForecastData>();
+        public IList<WindForecastData> WindForecastDataSet { get; init; } = new List<WindForecastData>();
         public void MapRawWindForecastData()
         {
             foreach (var item in data)
@@ -24,11 +24,11 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
     }
 
     // represents data in response's _meta field
-    public class MetaData
+    public record struct MetaData
     {
-        public int totalRecords {  get; set; }
-        public int pageSize { get; set; }
-        public int totalPage { get; set; }
-        public int currentPage { get; set; }
+        public int totalRecords {  get; init; }
+        public int pageSize { get; init; }
+        public int totalPage { get; init; }
+        public int currentPage { get; init; }
     }
 }

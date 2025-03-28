@@ -2,15 +2,15 @@
 
 namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
-    public class SystemWideHourlyRegionalRequest : IUrlParameters
+    public record SystemWideHourlyRegionalRequest : IUrlParameters
     {
         public readonly DateTime DATE_TIME_NOT_SET = DateTime.MinValue;
         public readonly int INT_NOT_SET = -1;
         private readonly string _datetime_format = "yyyy-MM-ddTHH:mm:ss";
 
-        public DateTime From { get; set; }
-        public DateTime To   { get; set; }
-        public int Size { get; set; }
+        public DateTime From { get; init; }
+        public DateTime To   { get; init; }
+        public int Size { get; init; }
 
         public SystemWideHourlyRegionalRequest() 
         {
