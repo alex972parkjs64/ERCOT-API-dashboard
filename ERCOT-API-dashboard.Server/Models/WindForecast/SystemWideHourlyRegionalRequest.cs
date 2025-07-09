@@ -4,8 +4,8 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
     public record SystemWideHourlyRegionalRequest : IUrlParameters
     {
-        public readonly DateTime DATE_TIME_NOT_SET = DateTime.MinValue;
-        public readonly int INT_NOT_SET = -1;
+        private readonly DateTime DATE_TIME_NOT_SET = DateTime.MinValue;
+        private readonly int INT_NOT_SET = -1;
         private readonly string _datetime_format = "yyyy-MM-ddTHH:mm:ss";
 
         public DateTime PostedFrom { get; init; }
