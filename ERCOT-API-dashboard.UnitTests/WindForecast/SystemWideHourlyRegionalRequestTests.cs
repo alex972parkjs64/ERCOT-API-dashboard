@@ -17,7 +17,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                From = new DateTime(2025, 3, 17, 3, 30, 45)
+                PostedFrom = new DateTime(2025, 3, 17, 3, 30, 45)
             };
 
             Assert.Equal("postedDatetimeFrom=2025-03-17T03:30:45&", exampleRequest.PostedDateTimeFromQryParam);
@@ -28,7 +28,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                From = new DateTime(2025, 10, 5, 22, 5, 7)
+                PostedFrom = new DateTime(2025, 10, 5, 22, 5, 7)
             };
 
             Assert.Equal("postedDatetimeFrom=2025-10-05T22:05:07&", exampleRequest.PostedDateTimeFromQryParam);
@@ -39,7 +39,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                From = new DateTime(2025, 10, 5, 22, 5, 7),
+                PostedFrom = new DateTime(2025, 10, 5, 22, 5, 7),
             };
 
             Assert.Equal("?postedDatetimeFrom=2025-10-05T22:05:07&",
@@ -51,7 +51,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                To = new DateTime(2025, 3, 17, 3, 30, 45)
+                PostedTo = new DateTime(2025, 3, 17, 3, 30, 45)
             };
 
             Assert.Equal("postedDatetimeTo=2025-03-17T03:30:45&", exampleRequest.PostedDateTimeToQryParam);
@@ -62,7 +62,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                To = new DateTime(2025, 10, 5, 22, 5, 7)
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7)
             };
 
             Assert.Equal("postedDatetimeTo=2025-10-05T22:05:07&", exampleRequest.PostedDateTimeToQryParam);
@@ -73,7 +73,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                To = new DateTime(2025, 10, 5, 22, 5, 7)
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7)
             };
 
             Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&", 
@@ -85,8 +85,8 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                From = new DateTime(2025, 10, 5, 22, 5, 7),
-                To = new DateTime(2025, 3, 17, 3, 30, 45)
+                PostedFrom = new DateTime(2025, 10, 5, 22, 5, 7),
+                PostedTo = new DateTime(2025, 3, 17, 3, 30, 45)
             };
 
             Assert.Equal("?postedDatetimeFrom=2025-10-05T22:05:07&postedDatetimeTo=2025-03-17T03:30:45&", 
@@ -98,11 +98,25 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                From = new DateTime(2025, 3, 17, 3, 30, 45),
-                To = new DateTime(2025, 10, 5, 22, 5, 7)
+                PostedFrom = new DateTime(2025, 3, 17, 3, 30, 45),
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7)
             };
 
             Assert.Equal("?postedDatetimeFrom=2025-03-17T03:30:45&postedDatetimeTo=2025-10-05T22:05:07&",
+                exampleRequest.UrlParameters);
+        }
+
+        [Fact]
+        public void PageUrlTest()
+        {
+            var exampleRequest = new SystemWideHourlyRegionalRequest
+            {
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
+                Page = 3,
+                Size = 1200
+            };
+
+            Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&page=3&size=1200&",
                 exampleRequest.UrlParameters);
         }
 
@@ -111,7 +125,7 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
         {
             var exampleRequest = new SystemWideHourlyRegionalRequest
             {
-                To = new DateTime(2025, 10, 5, 22, 5, 7),
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
                 Size = 7
             };
 

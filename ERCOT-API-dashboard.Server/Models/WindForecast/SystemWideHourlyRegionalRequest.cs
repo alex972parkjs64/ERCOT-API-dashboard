@@ -8,23 +8,26 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         public readonly int INT_NOT_SET = -1;
         private readonly string _datetime_format = "yyyy-MM-ddTHH:mm:ss";
 
-        public DateTime From { get; init; }
-        public DateTime To   { get; init; }
+        public DateTime PostedFrom { get; init; }
+        public DateTime PostedTo   { get; init; }
+
+        public int Page { get; init; }
         public int Size { get; init; }
 
         public SystemWideHourlyRegionalRequest() 
         {
-            From = DATE_TIME_NOT_SET;
-            To   = DATE_TIME_NOT_SET;
+            PostedFrom = DATE_TIME_NOT_SET;
+            PostedTo   = DATE_TIME_NOT_SET;
             Size = INT_NOT_SET;
+            Page = INT_NOT_SET;
         }
         
         public string PostedDateTimeFromQryParam
         {
             get
             {
-                return From != DATE_TIME_NOT_SET ?
-                    string.Format("postedDatetimeFrom={0}&", From.ToString(_datetime_format))
+                return PostedFrom != DATE_TIME_NOT_SET ?
+                    string.Format("postedDatetimeFrom={0}&", PostedFrom.ToString(_datetime_format))
                     : 
                     string.Empty;
             }
@@ -34,10 +37,18 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         {
             get
             {
-                return To != DATE_TIME_NOT_SET ?
-                    string.Format("postedDatetimeTo={0}&", To.ToString(_datetime_format))
+                return PostedTo != DATE_TIME_NOT_SET ?
+                    string.Format("postedDatetimeTo={0}&", PostedTo.ToString(_datetime_format))
                     :
                     string.Empty;
+            }
+        }
+
+        public string PageParam
+        {
+            get
+            {
+                return Page != INT_NOT_SET ? $"page={Page}&" : string.Empty;
             }
         }
 
@@ -50,15 +61,16 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
                     :
                     string.Empty;
             }
-        }
+        }        
 
         public string UrlParameters
         {
             get
             {
-                return string.Format("?{0}{1}{2}",
+                return string.Format("?{0}{1}{2}{3}",
                     PostedDateTimeFromQryParam,
                     PostedDateTimeToQryParam,
+                    PageParam,
                     SizeQryParam); // size should eventually be set to index 14 !
             }
         }

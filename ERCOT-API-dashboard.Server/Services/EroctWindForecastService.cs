@@ -38,6 +38,9 @@ namespace ERCOT_API_dashboard.Server.Services
             _httpClient.DefaultRequestHeaders.Add(_httpHeaderKeyForApimSubKey, _apiSubscriptionKey);
 
             var windForecastResponse = await _httpClient.GetAsync(reportUrl);
+
+            // NOTE : wonder if I can take advantage of yield return here...
+            //        I might try memory usage test here...
             var windForecastResult   = await windForecastResponse.Content.ReadFromJsonAsync<SystemWideHourlyRegionalResponse>();
 
             windForecastResult?.MapRawWindForecastData();
