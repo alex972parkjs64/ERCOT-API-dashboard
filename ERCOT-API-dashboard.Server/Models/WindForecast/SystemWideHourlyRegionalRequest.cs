@@ -27,7 +27,7 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             get
             {
                 return PostedFrom != DATE_TIME_NOT_SET ?
-                    string.Format("postedDatetimeFrom={0}&", PostedFrom.ToString(_datetime_format))
+                    $"postedDatetimeFrom={PostedFrom.ToString(_datetime_format)}&"
                     : 
                     string.Empty;
             }
@@ -38,7 +38,7 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             get
             {
                 return PostedTo != DATE_TIME_NOT_SET ?
-                    string.Format("postedDatetimeTo={0}&", PostedTo.ToString(_datetime_format))
+                    $"postedDatetimeTo={PostedTo.ToString(_datetime_format)}&"
                     :
                     string.Empty;
             }
@@ -57,7 +57,7 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             get
             {
                 return Size != INT_NOT_SET ? 
-                    string.Format("size={0}&", Size)
+                    $"size={Size}&"
                     :
                     string.Empty;
             }
