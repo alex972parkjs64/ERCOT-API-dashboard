@@ -106,9 +106,11 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         {
             get
             {
-                return string.Format("?{0}{1}{2}{3}",
+                return string.Format("?{0}{1}{2}{3}{4}{5}",
                     PostedDateTimeFromQryParam,
                     PostedDateTimeToQryParam,
+                    RegionParam,
+                    ModelParam,
                     PageParam,
                     SizeQryParam); // size should eventually be set to index 14 !
             }
