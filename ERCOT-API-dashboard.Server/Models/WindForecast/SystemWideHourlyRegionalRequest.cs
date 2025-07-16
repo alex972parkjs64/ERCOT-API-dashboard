@@ -1,6 +1,7 @@
 ﻿using ERCOT_API_dashboard.Server.Models.Interface;
 
 using System.Reflection;
+using System.Web;
 
 namespace ERCOT_API_dashboard.Server.Models.WindForecast
 {
@@ -9,16 +10,37 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         private readonly DateTime DATE_TIME_NOT_SET = DateTime.MinValue;
         private readonly int INT_NOT_SET = -1;
         private readonly string STR_NOT_SET = string.Empty;
+        private readonly bool? BOOL_NOT_SET = null;
         private readonly string _datetime_format = "yyyy-MM-ddTHH:mm:ss";
 
         public DateTime PostedFrom { get; init; }
         public DateTime PostedTo   { get; init; }
         
         [Sortable]
-        public string Region { get; init; }
+        public string Region 
+        { 
+            get; 
+            init
+            {
+                field = HttpUtility.UrlEncode(value);
+            }
+        }
 
         [Sortable]
-        public string Model { get; init; }
+        public string Model 
+        { 
+            get; 
+            init
+            {
+                field = HttpUtility.UrlEncode(value);
+            }
+        }
+
+        [Sortable]
+        public bool? InUse { get; init; }
+
+        [Sortable]
+        public bool? DSTFlag { get; init; }
 
         public int Page { get; init; }
         public int Size { get; init; }
@@ -44,7 +66,7 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             Size = INT_NOT_SET;
             Page = INT_NOT_SET;
         }
-        
+
         public string PostedDateTimeFromQryParam
         {
             get
@@ -83,6 +105,22 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
             }
         }
 
+        public string InUseParam
+        {
+            get
+            {
+                return InUse != BOOL_NOT_SET ? $"inUseFlag={InUse}&" : string.Empty;
+            }
+        }
+
+        public string DSTFlagParam
+        {
+            get
+            {
+                return DSTFlag != BOOL_NOT_SET ? $"DSTFlag={DSTFlag}&" : string.Empty;
+            }
+        }
+
         public string PageParam
         {
             get
@@ -106,11 +144,13 @@ namespace ERCOT_API_dashboard.Server.Models.WindForecast
         {
             get
             {
-                return string.Format("?{0}{1}{2}{3}{4}{5}",
+                return string.Format("?{0}{1}{2}{3}{4}{5}{6}{7}",
                     PostedDateTimeFromQryParam,
                     PostedDateTimeToQryParam,
                     RegionParam,
                     ModelParam,
+                    InUseParam,
+                    DSTFlagParam,
                     PageParam,
                     SizeQryParam); // size should eventually be set to index 14 !
             }

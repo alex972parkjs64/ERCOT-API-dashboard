@@ -132,5 +132,67 @@ namespace ERCOT_API_dashboard.UnitTests.WindForecast
             Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&size=7&",
                 exampleRequest.UrlParameters);
         }
+
+        [Fact]
+        public void RegionUrlTest()
+        {
+            var exampleRequest = new SystemWideHourlyRegionalRequest
+            {
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
+                Region = "Dallas",
+                Size = 7
+            };
+
+            Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&region=Dallas&size=7&",
+                exampleRequest.UrlParameters);
+        }
+
+        [Fact]
+        public void ModelUrlTest()
+        {
+            var exampleRequest = new SystemWideHourlyRegionalRequest
+            {
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
+                Model = "MyCustomModel",
+                Region = "Dallas",
+                Size = 7
+            };
+
+            Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&region=Dallas&model=MyCustomModel&size=7&",
+                exampleRequest.UrlParameters);
+        }
+
+        [Fact]
+        public void InUseUrlTest()
+        {
+            var exampleRequest = new SystemWideHourlyRegionalRequest
+            {
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
+                Model = "MyCustomModel",
+                InUse = true,
+                Region = "Dallas",
+                Size = 7
+            };
+
+            Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&region=Dallas&model=MyCustomModel&inUseFlag=True&size=7&",
+                exampleRequest.UrlParameters);
+        }
+
+        [Fact]
+        public void DstUrlTest()
+        {
+            var exampleRequest = new SystemWideHourlyRegionalRequest
+            {
+                PostedTo = new DateTime(2025, 10, 5, 22, 5, 7),
+                Model = "MyCustomModel",
+                InUse = true,
+                DSTFlag = false,
+                Region = "Dallas",
+                Size = 7
+            };
+
+            Assert.Equal("?postedDatetimeTo=2025-10-05T22:05:07&region=Dallas&model=MyCustomModel&inUseFlag=True&DSTFlag=False&size=7&",
+                exampleRequest.UrlParameters);
+        }
     }
 }
